@@ -22,16 +22,26 @@ function sameOrigin(url) {
 
 $(document).ready(function() {
 	$('.login-btn').click(function(event) {
+        var first_name = $('#first-name').val();
+        var last_name = $('#last-name').val();
+        var email = $('#email').val();
 		var username = $('#username').val();
 		var password = $('#password').val();
+		var confirm_password = $('#password-2').val();
         var remember_me = $('#remember-me').is(':checked');
         var csrftoken = $('[name="csrfmiddlewaretoken"]').val();
 
-		if (username && password) {
+        if (password === confirm_password){
+            var password_match = true;
+        } else {
+            var password_match = false;
+        }
+
+		if (username && email && first_name && last_name && password_match && password) {
 			event.preventDefault();
-			var data = {username, password, remember_me};
+			var data = {username, password, first_name, last_name, email};
 			$.ajax({
-	            url: "/sign-in-api",
+	            url: "/sign-up-api",
 	            type: "POST",
 	            dataType: 'text',
 	            beforeSend: function(xhr, settings) {

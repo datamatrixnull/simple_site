@@ -25,4 +25,5 @@ urlpatterns = [
     path('sign-in', views.sign_in, name="sign_in"),
     path('logout', views.logout_request, name="logout"),
     path('sign-in-api', views.LoginView.as_view()),
+    path('sign-up-api', views.SignUpView.as_view()),
 ]
