@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="/static/css/home.css">
     <link rel="stylesheet" href="/static/css/cover.css">
 {% endblock %}
 
@@ -9,14 +8,16 @@
 
 {% block title %}Simple Site{% endblock %}
 
+{% block html_tags %}class="h-100"{% endblock %}
+
 {% block body %}
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
         <header class="mb-auto">
         <div>
             <h3 class="float-md-start mb-0">Simple</h3>
             <nav class="nav nav-masthead justify-content-center float-md-end">
-            <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="#">Login</a>
-            <a class="nav-link fw-bold py-1 px-0" href="#">Sign Up</a>
+            <a class="nav-link fw-bold py-1 px-0" href="{% url 'sign_in' %}">Login</a>
+            <a class="nav-link fw-bold py-1 px-0" href="{% url 'sign_up' %}">Sign Up</a>
             </nav>
         </div>
         </header>

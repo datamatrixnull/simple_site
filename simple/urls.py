@@ -21,4 +21,7 @@ from simple import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home),
+    path('sign-up', views.sign_up, name="sign_up"),
+    path('sign-in', views.sign_in, name="sign_in"),
+    path('sign-in-api', views.LoginView.as_view()),
 ]
