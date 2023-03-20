@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="/static/css/home.css">
+    <link rel="stylesheet" href="/static/css/cover.css">
+{% endblock %}
+
+{%block body_tags %}class="d-flex h-100 text-center text-bg-dark"{% endblock %}
+
+{% block title %}Simple Site{% endblock %}
+
+{% block body %}
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <header class="mb-auto">
+        <div>
+            <h3 class="float-md-start mb-0">Simple</h3>
+            <nav class="nav nav-masthead justify-content-center float-md-end">
+            <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="#">Login</a>
+            <a class="nav-link fw-bold py-1 px-0" href="#">Sign Up</a>
+            </nav>
+        </div>
+        </header>
+    
+        <main class="px-3">
+        <h1>Hello World</h1>
+        <p class="lead">If you're seeing this text it means the site has run successfully, it also means you haven't logged in, signed up you can do so using the above links.</p>
+        </main>
+    
+        <footer class="mt-auto text-white-50">
+        <p>Inspired by Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>
+        </footer>
+    </div>
+{% endblock %}
