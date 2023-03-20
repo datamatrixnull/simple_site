@@ -6,30 +6,34 @@
     <link rel="stylesheet" href="/static/css/sign-in.css">
 {% endblock %}
 
+{% block extra_js %}
+    <script src="/static/js/sign-in.js"></script>
+{% endblock %}
+
 {% block body_tags %}class="text-center"{% endblock %}
 
 {% block body %}
     <main class="form-signin w-100 m-auto">
-        <form>
-        <img class="mb-4" src="/static/img/7-2-earth-png-pic.png" alt="" width="72" height="72">
-        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-    
-        <div class="form-floating">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Email address</label>
-        </div>
-        <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-            <label for="floatingPassword">Password</label>
-        </div>
-    
-        <div class="checkbox mb-3">
-            <label>
-            <input type="checkbox" value="remember-me"> Remember me
-            </label>
-        </div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-        <p class="mt-5 mb-3 text-muted">&copy; 2017–{% now "Y" %}</p>
+        <form>{% csrf_token %}
+            <img class="mb-4" src="/static/img/7-2-earth-png-pic.png" alt="" width="72" height="72">
+            <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+        
+            <div class="form-floating">
+                <input class="form-control" id="username" placeholder="hello_user">
+                <label for="floatingInput">Username</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="password" placeholder="Password">
+                <label for="floatingPassword">Password</label>
+            </div>
+        
+            <div class="checkbox mb-3">
+                <label>
+                <input type="checkbox" value="remember-me" id="remember-me"> Remember me
+                </label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary login-btn" type="submit">Sign in</button>
+            <p class="mt-5 mb-3 text-muted">&copy; 2017–{% now "Y" %}</p>
         </form>
     </main>
 {% endblock %}
