@@ -29,7 +29,13 @@
     
         <main class="px-3">
         <h1>Hello World</h1>
-        <p class="lead">If you're seeing this text it means the site has run successfully, it also means you haven't logged in, signed up you can do so using the above links.</p>
+        {% if user.is_authenticated %}
+            <p>Welcome {{ user.first_name }} to the Hello World Site, if you're seeing this it means you've successfully logged in using django-rest-framework and as your prize you get to feast your eyes on this beauty</p>
+            <img src="/static/img/NmJgg.jpg" alt="" class="img-fluid mb-4">
+        {% else %}
+            <p class="lead">If you're seeing this text it means the site has run successfully, it also means you haven't logged in/signed up you can do so using the above links.</p>
+        {% endif %}
+        
         </main>
     
         <footer class="mt-auto text-white-50">
