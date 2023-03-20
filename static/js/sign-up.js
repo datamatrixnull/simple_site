@@ -21,7 +21,7 @@ function sameOrigin(url) {
 /* End CSRF Code */
 
 $(document).ready(function() {
-	$('.login-btn').click(function(event) {
+	$('.signup-btn').click(function(event) {
         var first_name = $('#first-name').val();
         var last_name = $('#last-name').val();
         var email = $('#email').val();
@@ -38,7 +38,7 @@ $(document).ready(function() {
         }
 
 		if (username && email && first_name && last_name && password_match && password) {
-			event.preventDefault();
+            event.preventDefault();
 			var data = {username, password, first_name, last_name, email};
 			$.ajax({
 	            url: "/sign-up-api",
@@ -65,11 +65,14 @@ $(document).ready(function() {
 					errors = '';
 					dict_errors = JSON.parse(xhr['responseText']);
 					for (const [key, value] of Object.entries(dict_errors)) {
-						if (key.includes('error')){
-							for (i in value) {
-								errors+= `<p class="text-danger"> ${value[i]} </p>`;
-							}							
-						}
+						for (i in value) {
+							text = `<p class="text-danger">${key} : ${value[i]} </p>`;
+							if (errors.includes(text)){
+								//pass
+							} else {
+								errors += text;
+							}
+						}							
 					}
 					$('.errors').append(errors);
 

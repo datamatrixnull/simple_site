@@ -55,11 +55,14 @@ $(document).ready(function() {
 					errors = '';
 					dict_errors = JSON.parse(xhr['responseText']);
 					for (const [key, value] of Object.entries(dict_errors)) {
-						if (key.includes('error')){
-							for (i in value) {
-								errors+= `<p class="text-danger"> ${value[i]} </p>`;
-							}							
-						}
+						for (i in value) {
+							text = `<p class="text-danger">${key} : ${value[i]} </p>`;
+							if (errors.includes(text)){
+								console.log('skip')
+							} else {
+								errors += text;
+							}
+						}							
 					}
 					$('.errors').append(errors);
 
