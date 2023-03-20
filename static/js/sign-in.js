@@ -31,11 +31,10 @@ $(document).ready(function() {
 
 		if (username && password) {
 			var data = {username, password, remember_me};
-
 			$.ajax({
 	            url: "/sign-in-api",
 	            type: "POST",
-	            dataType: 'json',
+	            dataType: 'text',
 	            beforeSend: function(xhr, settings) {
 	                if (!csrfSafeMethod(settings.type) && sameOrigin(settings.url)) {
 	                    // Send the token to same-origin, relative URLs only.
@@ -45,18 +44,30 @@ $(document).ready(function() {
 	                }
 	            },
 	            data: data,
-	            success: function(response){
-	                // var status = response['status'];
-	                // if (status == 'ok') {
-	                // 	document.location.href = '/';
-	                // } else {
-	                // 	var error = response['error'];
-	                // 	$('.text-danger').removeClass('d-none').text(error);
-	                // }
+	            success: function(response, status, xhr){
+	                if (xhr.status == 202) {
+	                	document.location.href = '/';
+	                } else {
+                        // ¯\_(ツ)_/¯
+	                }
+	            },
+				error: function (xhr, status, error) {
+					$('.errors').empty();
+					errors = '';
+					dict_errors = JSON.parse(xhr['responseText']);
+					for (const [key, value] of Object.entries(dict_errors)) {
+						if (key.includes('error')){
+							for (i in value) {
+								console.log(value)
+								errors+= `<p class="text-danger"> ${value[i]} </p>`;
+							}							
+						}
+					}
+					console.log(errors)
+					$('.errors').append(errors);
+
 	            }
-
-
-	            });
+			});
 	        
 	        /* End Ajax Call */
 		}

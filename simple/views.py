@@ -34,5 +34,6 @@ class LoginView(views.APIView):
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
         login(request, user)
-
+        # if not request.data['remember-me']:
+        #     request.session.set_expiry(0)
         return Response(None, status=status.HTTP_202_ACCEPTED)
