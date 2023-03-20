@@ -23,5 +23,6 @@ urlpatterns = [
     path('', views.home),
     path('sign-up', views.sign_up, name="sign_up"),
     path('sign-in', views.sign_in, name="sign_in"),
+    path('logout', views.logout_request, name="logout"),
     path('sign-in-api', views.LoginView.as_view()),
 ]
