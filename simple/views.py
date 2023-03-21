@@ -54,7 +54,6 @@ class SignUpView(views.APIView):
             context={ 'request': self.request })
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        print(dir(serializer))
         user = serializer.instance
         login(request, user)
         return Response(None, status=status.HTTP_202_ACCEPTED)
